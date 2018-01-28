@@ -58,7 +58,7 @@ end
 
 
   gender_list = ['male', 'female', 'other']
-  gender_weighted_list = ['female', 'female', 'female', 'female', 'female', 'female', 'female', 'male', 'male', 'male', 'male', 'other']
+  gender_weighted_list = ['female', 'female', 'female', 'female', 'female', 'female', 'female', 'male', 'male', 'male', 'male', 'male', 'other']
   looking_for_list = ['Friend', 'Activity Partner', 'Networking']
   privacy_weighted = [true, false, false, false, false, false, false, false, false, false, false]
 
@@ -75,12 +75,12 @@ end
     loc_index = rand(4..95)
     user = User.create!(
       name: now_name,
-      email: "#{Faker::Internet.free_email}#{spec_count}",
+      email: "#{now_name}@#{Faker::Name.name}.com",
       password: 'password',
       password_confirmation: 'password',
       gender: gender_weighted_list.sample,
       looking_for: looking_for_list.sample,
-      phone: 1234567890,
+      phone: '1234567890',
       fsa: Fsa.all[loc_index],
       privacy: privacy_weighted.sample,
       income: incoom
@@ -99,7 +99,7 @@ end
       gender: gender_list[1],
       looking_for: looking_for_list.sample,
       phone: '1234567890',
-      privacy: [true, false].sample,
+      privacy: privacy_weighted.sample,
       fsa: Fsa.all.sample,
       income: incoom
     )
@@ -111,12 +111,13 @@ end
     incoom = rand(0..150000)
     user = User.create!(
       name: now_name,
-      email: "#{Faker::Internet.free_email}#{spec_count}",
+      email: "#{now_name}@#{Faker::Name.name}.com",
       password: 'password',
       password_confirmation: 'password',
       gender: gender_list[0],
       looking_for: looking_for_list[2],
-      phone: 1234567890,
+      phone: '1234567890',
+      privacy: privacy_weighted.sample,
       fsa: Fsa.all.sample,
       income: incoom
     )
@@ -131,12 +132,13 @@ end
     loc_index = rand(0..3)
     user = User.create!(
       name: now_name,
-      email: "#{Faker::Internet.free_email}#{spec_count}",
+      email: "#{now_name}@#{Faker::Name.name}.com",
       password: 'password',
       password_confirmation: 'password',
       gender: gender_weighted_list.sample,
       looking_for: looking_for_list.sample,
-      phone: 1234567890,
+      phone: '1234567890',
+      privacy: privacy_weighted.sample,
       fsa: Fsa.all[loc_index],
       income: incoom
     )
@@ -151,40 +153,19 @@ end
     loc_index = rand(4..7)
     user = User.create!(
       name: now_name,
-      email: "#{Faker::Internet.free_email}#{spec_count}",
+      email: "#{now_name}@#{Faker::Name.name}.com",
       password: 'password',
       password_confirmation: 'password',
       gender: gender_weighted_list.sample,
       looking_for: looking_for_list.sample,
-      phone: 1234567890,
+      phone: '1234567890',
+      privacy: privacy_weighted.sample,
       fsa: Fsa.all[loc_index],
       income: incoom
     )
   end
 
 
-
-
-
-
-
-
-
-
-
-30.times do
-  user_name = Faker::Name.name
-  user = User.create!(
-    name: user_name,
-    email: Faker::Internet.free_email(user_name),
-    password: 'password',
-    password_confirmation: 'password',
-    phone: '1234567890',
-    fsa: Fsa.all.sample,
-    privacy: [true, false].sample,
-    income: rand(1..1000000)
-  )
-end
 
 
 pop_culture.select! do |franchise, options|
