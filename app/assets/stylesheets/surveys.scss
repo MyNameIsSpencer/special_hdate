@@ -1,0 +1,57 @@
+// Place all the styles related to the Surveys controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.survey img {
+  width: 100%;
+  height: 200px;
+}
+
+
+.survey {
+  position: relative;
+  z-index: 1;
+}
+
+span{
+  position: absolute;
+  left: 3rem;
+  top: 3rem;
+  background: black;
+  text-decoration-color: white;
+}
+
+span a {
+  padding: 2px;
+}
+
+//
+// .row{
+//   margin-bottom: 1.5em;
+//   position:relative;
+//   width: 100%;
+// }
+
+
+.survey img {
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1%;
+  left: 0;
+  right: 0;
+
+}
+
+.overlay {
+    position:absolute;
+    display: block;
+    background-color: purple;
+    opacity: 0.6;
+    width: 99%;
+    height: 99%;
+}
+
+div.main-content {
+    padding: 0;
+}

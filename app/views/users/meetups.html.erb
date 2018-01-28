@@ -1,0 +1,22 @@
+<h2> Want to Kvetch? </h2>
+<h4> Join Meetups that fit your interests </h4>
+
+<% if @user.results.length > 0 %>
+  <% count = 0 %>
+  <% @user_meetups.each do |meetup| %>
+    <% if meetup.length > 0 %>
+      <% count +=1 %>
+      <h3><%= meetup[0]["name"]%></h3>
+      <% if meetup[0]["key_photo"] %>
+        <%= link_to(image_tag(meetup[0]["key_photo"]["thumb_link"]), meetup[0]["link"] ) %>
+      <% else %>
+        <%= link_to(meetup[0]["name"], meetup[0]["link"]) %>
+      <% end %>
+    <% end %>
+  <% end  %>
+  <% if count == 0 %>
+    <p> No meetups found just yet! Complete more surveys to get more meetups </p>
+  <% end   %>
+<%else %>
+  <p> Please complete a survey so we can find you a meetup! </p>
+<%end %>

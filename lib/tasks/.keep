@@ -1,0 +1,6 @@
+rake paperclip:refresh:thumbnails CLASS=User
+
+desc "Generate thumbnails from user description"
+task :generate_thumbnail do
+  rake paperclip:refresh:thumbnails CLASS=User
+end

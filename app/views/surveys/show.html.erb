@@ -1,0 +1,16 @@
+<h1>Which do you hate more, <%=@survey.name%> edition:</h1>
+
+<% if @survey_done_today == false%>
+  <button type="submit" id="start_survey">Start Survey</button>
+<% else %>
+  <p>Come back tomorrow to try this survey again!</p>
+<% end %>
+
+<br>
+<div class="topic" id ="<%=@survey.name%>" type="hidden"></div>
+<div class="row" id="questions"></div>
+<input type="hidden" id="user" value="<%= @user.id %>">
+
+<style media="screen">
+  #map {display: none;}
+</style>

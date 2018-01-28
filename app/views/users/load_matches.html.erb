@@ -1,0 +1,50 @@
+<h2> <%= @user.name %>'s matches </h2>
+
+<p>Hi <%=@user.name  %>, here are the people who hate what you hate! </p>
+
+<%if @user.results.length == 0 %>
+  <p>We can't find you a match if you haven't finished a <%= link_to("survey", surveys_path) %></p>
+<%else  %>
+  <%count = 0 %>
+
+  <div id="results">
+  <% @user.results.each do |result| %>
+    <% matches = result.make_matches(@user.match_generator(result))%>
+    <%sorted = matches.sort_by {|match| match[1].to_f}.reverse %>
+    <%sorted.each do |match| %>
+      <div class="matches  <%=(Survey.find(result.survey_id).name).gsub(/[ ]/, '-') %>">
+      <%user = User.find(match[0].to_i) %>
+      <% unless @user.blocks.include?(user.id) %>
+        <p>You matched with <%= user.name %> with <%= number_to_percentage(match[1].to_f*100, precision:0) %>  on <%= Survey.find(result.survey_id).name %>.
+        <button type="submit" name="ticket_master" id="ticketMaster">Book Event</button> <br>
+        They are <%= user.status %>!</p>
+        <%= link_to("Visit Profile", user_path(user.id)) %> | <%= link_to("Chat Now!", chat_room_path(:receiver => user.id)) %>
+        <%single_received_messages = @received_messages.where("user_id =?", user.id ) %>
+        <%single_sent_messages = @sent_messages.where("receiver_id =?", user.id ) %>
+        <%if single_received_messages.any?{|message| message.read == false} %>
+          <p class='chat_note'><b>You have unread messages</b></p>
+        <%elsif single_sent_messages.any?{|message| message.read == false}%>
+          <p class='chat_note'><b>Your messages have not been read yet</b></p>
+        <%end %>
+        <br>
+        <%= link_to("Block User", block_user_path(:receiver => user.id), method: :patch, :data => {:confirm => 'Are you sure?  Blocks cannot be Undone.'}) %>
+        <%count+=1 %>
+      </div>
+      <br>
+      <%end %>
+    <% end %>
+  <%end %>
+</div>
+<%end %>
+<%if count == 0 %>
+  <p> No matches yet! Have you checked out your <%= link_to("meetups", user_meetups_path(@user.id)) %>?</p>
+<%end %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["Google_key"]%>&callback=initLoadMatchesMap&libraries=geometry"
+async defer></script>
+
+
+<!-- ========== Google Maps ============== -->
+  <div class="padded-map">
+    <div id="map"></div>
+  </div>

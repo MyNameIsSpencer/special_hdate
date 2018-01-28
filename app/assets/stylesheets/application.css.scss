@@ -1,0 +1,403 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+@media screen and (min-width:700px){}
+
+tml {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  color: black;
+}
+
+header {
+  height: 80px;
+  z-index: 10;
+  box-sizing: border-box;
+  margin: 0;
+  top: 0px;
+  left: 0;
+  display: block;
+  text-align: center;
+  // margin-bottom: 1rem;
+  background: linear-gradient(to bottom right, purple, pink);
+
+  position: fixed;
+  width: 100%
+  // box-shadow: 5px 10px 8px #888888;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+main{
+  margin-top: 64px;
+  background-color: white;
+}
+
+ input[type=submit] {
+  color: black;
+}
+
+h1, h2, h3, h4, p {
+  padding-left: 20px;
+  color: black;
+}
+
+main label {
+  color: black;
+}
+
+header form {
+  text-align: right;
+  display:inline;
+}
+
+// START
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.right-column {
+  // background-color:#aaa;
+  // display: inline-block;
+  float: right;
+  // margin-top: -25px;
+  width: 92%;
+  // padding: 10px;
+  // height: 800px;
+  // position: fixed;
+  display: inline;
+}
+
+.left-column {
+  background: linear-gradient(to bottom right, pink, purple);
+  // background-color: purple;
+  // display: inline-block;
+  float: left;
+  margin-top: -25px;
+  width: 8%;
+  // padding: 10px;
+  height: 750px;
+  position: fixed;
+  display: inline;
+}
+
+.left-column > nav {
+  margin-top: 50px;
+  float: left;
+}
+
+.left-column ul {
+  padding: 0;
+}
+
+.left-menu-icons {
+  display: block;
+  padding-left: 15%;
+  padding-bottom: 10px;
+  list-style-type: none;
+}
+
+.left-menu-icons > a img {
+  height: 45px;
+  width: 45px;
+}
+
+.header-right-stacked {
+  display: inline;
+  float: right;
+}
+
+.button-search{
+    margin-left: -5px;
+    height: 23px;
+    /* padding: 4px 5px; */
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555555;
+    text-align: center;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.search-text{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.logo {
+  padding-left:2%;
+ font-family: 'Rock Salt', cursive;
+}
+
+
+.hate_date {
+  font-family: 'Rock Salt', cursive;
+}
+
+.second_step {
+ display: none;
+}
+
+.survey {
+ position: relative;
+ display: block;
+}
+
+.survey >span{
+ text-decoration: none;
+ background: black;
+ color: white;
+ position: absolute;
+ left: 3rem;
+ padding: 1px;
+ top: 1.5rem;}
+
+td {
+  vertical-align: middle;
+}
+
+.searcher{
+  margin-top: 10px;
+  float:left;
+  display: inline;
+  align-content: center;
+  padding: 1em;
+}
+
+.statuser{
+  margin-top: 10px;
+  float:right;
+  display: inline;
+  align-content: center;
+  padding: 1em;
+  margin-right: 20px;
+}
+
+span.caret {
+    position: absolute;
+    left: -20px;
+    top: 5px;
+}
+
+a.dropdown-toggle.navbar-text {
+    top: -20px;
+    position: relative;
+    color: black;
+}
+
+.dropdown.navbar-right {
+    text-decoration: none;
+    display: inline-block;
+    color: black;
+    right: 2em;
+    top: 1em;
+}
+
+.navbar {
+  margin-bottom: 10px;
+  display:inline;
+
+}
+.col-xs-6 > span{
+
+  margin-left: 6%;
+  margin-top: 3%;
+
+}
+
+#questions {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+#messages {
+  border:2px solid black;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-weight: .6;
+  border-radius: 20px;
+}
+
+.chat_note{
+  display: inline-block;
+  margin: 0
+}
+
+.about_container{
+  padding:1.5em;
+  text-align: center;
+}
+
+.about_container p{
+  font-size: 1.5rem;
+}
+
+#logo_click{
+  width:275px;
+  height: 90px;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 100
+
+}
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to bottom right, purple, rebeccapurple);
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    z-index: 100;
+    font-family: 'Rock Salt', cursive;
+    margin-top: 100px
+}
+
+.footer p {
+  padding-top: 0.5em
+}
+
+.footer a{
+  color: red
+}
+
+#had-enough {
+
+}
+
+main {
+  // margin: 10% 5%;
+  margin-bottom: 0
+}
+header {
+  max-height: 10%
+}
+
+.name, .text {
+  display: inline-block;
+}
+.name {
+  color: purple;
+  margin-right: 0.5rem
+}
+
+@media (min-width: 951px) {
+
+  .left-menu-icons > a img {
+    height: 60px;
+    width: 60px;
+  }
+}
+
+@media (max-width: 950px) {
+
+  .left-menu-icons > a img {
+    height: 45px;
+    width: 45px;
+  }
+}
+
+@media (max-width: 720px) {
+
+  .form-box {
+    margin-left: 25%;
+  }
+
+  .logo {
+    font-size: 25px;
+  }
+
+  .left-menu-icons > a img {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media (max-width: 550px) {
+
+  .form-box {
+    margin-left: 12%;
+  }
+
+  .right-column {
+    float: none;
+    width: 100%;
+  }
+
+  .logo {
+    font-size: 18px;
+    width: 100px;
+  }
+
+  .left-column {
+    float: none;
+    position: fixed;
+    width: 100%;
+    height: 8%;
+    bottom: 0;
+    background: linear-gradient(to bottom right, purple, rebeccapurple);
+    z-index: 100;
+  }
+
+
+  .left-menu-icons {
+    padding-left: 0;
+    margin-left: 10px;
+    margin-top: -45px;
+    float: left;
+    top: 0;
+    // padding-left: 15%;
+    // padding-bottom: 10px;
+    list-style-type: none;
+  }
+
+  .left-menu-icons > a img {
+    float: left;
+    display: inline-block;
+    // margin-top: -55px;
+    height: 45px;
+    width: 45px;
+  }
+
+  #had-enough {
+    display: none;
+  }
+
+}

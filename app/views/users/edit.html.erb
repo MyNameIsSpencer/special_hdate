@@ -1,0 +1,50 @@
+<h1>Edit</h1>
+
+<div>
+<%= form_for @user, url: user_url(@user.id) do |f|%>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :avatar %><br>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :pet_peeves %>
+    <%= f.text_field :pet_peeves %>
+  </div>
+  <div class="field">
+    <%= f.label :fsa %>
+    <%= f.collection_select :fsa_id, Fsa.order('name ASC').all, :id, :name, prompt: true %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.telephone_field :phone, :maxlength =>10, :placeholder => "5555555555" %>
+  </div>
+  <div class="field">
+    <%= f.label :keep_profile_private %>
+    <%= f.check_box :privacy, {}, "true", "false" %>
+  </div>
+  <div id = "create_user_part_2">
+  <%= f.submit %>
+  </div>
+<%end %>
+</div>

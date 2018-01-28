@@ -1,0 +1,197 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#radButton {
+  margin-bottom: 10px;
+}
+
+#map1 {
+  margin-top: 0%;
+  height: 650px;
+}
+
+#radInput {
+  margin-left: 20px;
+}
+
+#logged-in-text {
+  color: black;
+  padding-left: 20px;
+}
+
+#form_message {
+  color: black;
+  padding-left: 20px;
+}
+
+.field {
+  color: black;
+}
+
+.padded-map {
+  padding: 20px;
+  background-color: #280b33;
+  // height: 100%;
+}
+
+.form-box {
+  position: fixed;
+  margin-left: 35%;
+  width: 250px;
+  height: 210px;
+  background: linear-gradient(to bottom right, purple, pink);
+  border: 3px solid #280b33;
+  border-radius: 25px;
+  top: 35%;
+}
+
+.login {
+  padding-right: 10%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: lavenderblush;
+  text-align: center;
+  font-family: 'Rock Salt', cursive;
+}
+
+.form-of-login {
+  margin-left: 20px;
+  height: 30px;
+  width: 202px;
+  margin-bottom: 10px;
+}
+
+#login-button {
+  margin-left: 20px;
+  height: 35px;
+  width: 202px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  background: linear-gradient(to bottom right, purple, rebeccapurple);
+  color: white;
+  border: 2px solid #280b33;
+}
+
+
+.login-fields > form {
+    display: inline-block;
+    text-align: center;
+}
+
+.form-row.register{
+  // height:360px;
+  // width:350px;
+  height: max-content;
+  min-width: min-content;
+}
+
+
+// ===== Not Master Start
+  .login-fields {
+    height: 20px;
+    width: 30%;
+    display: grid;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    // margin-left: -52%;
+  }
+// ===== Not Master End
+
+
+
+// ===== Master Start
+  // .login-fields {
+  //   width: fit-content;
+  //   display: inline-grid;
+  //   margin: 1%;
+  //   padding: 1%;
+  // }
+
+  .first_step {
+    display: inline-grid;
+    text-align: center;
+  }
+// ===== Master End
+
+
+.map-background {
+  // margin-top: -25px;
+  // margin-right: -10px;
+  // margin-left: -10px;
+  // height: fit-content;
+}
+
+.header-buttons {
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.tab-cols {
+    padding-right: 1rem;
+  }
+
+.search-bar{
+  padding-right: 0px;
+}
+
+h1 {
+  padding: 0;
+  margin: 0;
+}
+.logo {
+  margin-top:12px;
+  color: lavenderblush;
+  float: left;
+  width:33.3333%;
+  text-align: left;
+  font-family: 'Rock Salt', cursive;
+}
+.site-nav {
+  color: lavenderblush;
+  float: right;
+  width: 33.333%;
+  text-align: right;
+  padding-top: 0.6%;
+  padding-right: 4%;
+}
+
+.site-nav:visted {
+  color: lavenderblush;
+}
+
+
+
+h1 + img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+
+}
+
+  .login-page .logo {
+    animation-name: slideInLeft;
+    animation-duration: 0.5s;
+  }
+
+  img.user_avatar {
+    border: 2px darkgray ridge;
+}
+
+h1.logo.register {
+    padding: 0px;
+    text-align: center;
+    animation:none;
+    display: inline-block;
+}
+
+form.new_user {
+  display: inline-grid;
+}
+
+.field {
+  display: inline-grid;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,38 @@
+<% content_for :body_class, 'login-page' %>
+<div class="map-background">
+
+</div>
+
+<!-- ==== Spencer Branch Start ==== -->
+<div class="form-box">
+  <h1 class="login"> HateDate</h1>
+  <%= form_tag session_path do %>
+  <%= text_field_tag :email, params[:email], placeholder: "Email", class: 'form-of-login' %>
+  <%= password_field_tag :password, params[:password], placeholder: "Password", class: 'form-of-login' %>
+  <div> <%= submit_tag "Log in", id: "login-button" %>
+  <% end %>
+</div>
+<!-- ==== Spencer Branch End ==== -->
+
+
+<div>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["Google_key"]%>&callback=initFirstMap&libraries=geometry"
+async defer></script>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    // var mapWrapper = document.createElement('div');
+    var paddedMap = document.querySelector('.padded-map');
+    // paddedMap.style.visibility = "hidden";
+    // mapWrapper.className="map_wrapper";
+    // mapWrapper.appendChild('padded-map');
+    $('.map-background').append(paddedMap);
+  });
+</script>
+
+</div>
+
+<!-- ========== Google Maps ============== -->
+  <div class="padded-map">
+    <div id="map1"></div>
+  </div>

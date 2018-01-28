@@ -1,0 +1,42 @@
+<% if current_user %>
+  <h1 class="welcome-user">Welcome <%= current_user.name %>!</h1>
+<% end %>
+
+<h4> About Me</h4>
+<%if @user.avatar_file_size %>
+  <%= image_tag @user.avatar.url(:thumb), class: "user_avatar"%>
+<% end %>
+<p> Description: <%= @user.description %> </p>
+<p> Pet Peeves: <%= @user.pet_peeves %> </p>
+<% if @user == current_user %>
+  <p> Is Your Profile private? <%= "Yes" if @user.privacy == true %><%= "No" if @user.privacy == false %></p>
+  <%= link_to("Edit Profile", edit_user_path(current_user)) %>
+  <%= link_to("Delete Profile", user_path(current_user), method: :delete, data: {confirm: "Are you sure?"}) %>
+<%end %>
+
+<% if @found_users %>
+
+  <%@found_users.each do |user| %>
+    <% if user.privacy == false  %>
+      <p><%=user.name %> has the pet peeve "<%= user.pet_peeves %>"</p>
+    <% else %>
+      <p>Another user has the pet peeve "<%= user.pet_peeves %>"</p>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+<!-- ========== Google Maps ============== -->
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["Google_key"]%>&callback=initShowMap&libraries=geometry"
+async defer></script>
+
+<form class="" action="#" method="post">
+  <input id="radInput" type="text" name="radInput" value="">
+  <button id="radButton" type="submit" name="button">Radius</button>
+</form>
+
+
+<!-- ========== Google Maps ============== -->
+  <div class="padded-map">
+    <div id="map"></div>
+  </div>

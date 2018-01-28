@@ -1,0 +1,33 @@
+<h1>Chat Room</h1>
+<div id='logged-in-text'>Logged in:</div>
+<div id="logged_in"></div>
+<p>Chatting with <%= @receiver.name %> Status: <%=@receiver.status%> </p>
+<%= form_tag '/messages', id: 'form_message'  do %>
+  Enter your message:
+  <%= text_field_tag :text_message %>
+  <%= hidden_field_tag :user , @current_user.name %>
+  <%= hidden_field_tag :receiver, @receiver.id %>
+  <%= submit_tag 'Chat' , data: {disable_with: false}%>
+<% end %>
+
+<div id="messages"></div>
+
+
+
+<h2 id='distanceText'></h2>
+
+<!-- ========== Google Maps ============== -->
+<% if @receiver.blocks.include?(@current_user.id) %>
+<%=tag("div", :id => 'receiver_guy', :data => {:latitude => @receiver.fsa.latitude, :longitude => @receiver.fsa.longitude, :block => true}) %>
+<%else %>
+<%=tag("div", :id => 'receiver_guy', :data => {:latitude => @receiver.fsa.latitude, :longitude => @receiver.fsa.longitude, :block => false}) %>
+<%end %>
+<%=tag("div", :id => 'current_guy', :data => {:latitude => current_user.fsa.latitude, :longitude => current_user.fsa.longitude}) %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["Google_key"]%>&callback=initChatMap&libraries=geometry"
+async defer></script>
+
+<!-- ========== Google Maps ============== -->
+  <div class="padded-map">
+    <div id="map"></div>
+  </div>

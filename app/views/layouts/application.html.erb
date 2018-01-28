@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Rock+Salt" rel="stylesheet">
+
+<!-- ========== Font Awesome ========== -->
+    <link rel="stylesheet" href="path/to/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
+    <style>
+
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+    </style>
+
+    <title>HateDate</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "application"  %>
+    <%= tag :meta, property: 'og:image', content: image_url("HateDateFront.png") %>
+  </head>
+
+
+
+  <body class="<%= content_for :body_class %>">
+
+
+  <body>
+    <div id="logo_click"></div>
+
+    <header class="site-header">
+
+      <h1 class="logo"> Hate Date</h1>
+
+
+        <% if current_user %>
+        <div class="searcher">
+
+          <%= form_tag find_user_path, :method => 'get' do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Pet Peeves" , class: "search-text" %>
+
+              <%= button_tag(type: "submit", class: "button-search") do %>
+              <i class="glyphicon glyphicon-search"></i>
+                <% end %>
+              <%end %>
+        <%end %>
+
+      </div>
+
+
+      <ul class="nav navbar-nav navbar-right">
+				<% if current_user %>
+				<!-- signed in items -->
+					<div class="dropdown navbar-right">
+						<a class="dropdown-toggle navbar-text" data-toggle="dropdown">Hello, <%= current_user.name  %>! <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+              <li class="dropdown-item"><%=  link_to("Surveys", surveys_path)%></li>
+							<li class="dropdown-item"><%= link_to("Profile Page", user_path(current_user))%></li>
+							<li class="dropdown-item"><%= link_to("Matches", user_matches_path(current_user))%></li>
+							<li class="dropdown-item"><%= link_to("Meetups", user_meetups_path(current_user)) %></li>
+							<li class="dropdown-item"><%= link_to "Logout", :logout, method: :delete%></li>
+						</ul>
+					</div>
+
+				<%else  %>
+				<!-- Signed out items -->
+        <div class="dropdown navbar-right">
+          <a class="dropdown-toggle navbar-text" data-toggle="dropdown">Hello, Stranger! <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"><%=  link_to("Surveys", surveys_path)%></li>
+            <li class="dropdown-item"><%= link_to "Register", new_user_path %></li>
+            <li class="dropdown-item"><%=  link_to "Login", :login%></li>
+          </ul>
+        </div>
+        <!-- <a href="http://www.google.com"><img src="http://www.google.com/intl/en_ALL/images/logo.gif"/></a> -->
+
+				<%end  %>
+			</ul>
+
+      <% if current_user %>
+      <div class="statuser">
+
+      <%= form_for current_user, url: change_status_path(current_user.id)  do |f|%>
+        <%= f.select :status, ['Online', 'Away', 'Busy','On The Phone', 'At Work','At School'].sort, {}, {:onChange=>"this.form.submit()"} %>
+        <%end %>
+      </div>
+      <%end %>
+
+    </div>
+    </header>
+
+
+
+    <% if current_user %>
+      <div class="left-column">
+        <nav>
+          <ul>
+
+
+
+
+            <li class="left-menu-icons"><%= link_to surveys_path do %>
+              <%= image_tag('notepadSurveys3.jpeg') %>
+            <% end %></li>
+            <li class="left-menu-icons"><%= link_to user_path(current_user) do %>
+              <%= image_tag('profileFill.png') %>
+            <% end %></li>
+            <li class="left-menu-icons"><%= link_to user_matches_path(current_user) do %>
+              <%= image_tag('matchWhiteB.png') %>
+            <% end %></li>
+            <li class="left-menu-icons"><%= link_to user_meetups_path(current_user) do %>
+              <%= image_tag('meetupFill.png') %>
+            <% end %></li>
+            <li class="left-menu-icons"><%= link_to :logout, method: :delete do %>
+              <%= image_tag('logoutPurp.jpeg') %>
+            <% end %></li>
+
+
+          </ul>
+        </nav>
+      </div>
+    <% end %>
+
+
+
+
+
+    <main>
+    <% if current_user %>
+      <div class="right-column">
+    <% end %>
+
+   <% if flash[:notice] %>
+      <p class="notice"><%=  flash[:notice]%></p>
+    <% end %>
+   <% if flash[:alert] %>
+    <p class="alert"><%= flash[:alert] %></p>
+  <% end %>
+
+  <%= yield %>
+
+
+
+
+    <% @fsa_array = [] %>
+    <% User.all.each do |user|%>
+      <%if user.fsa && user.privacy == false %>
+        <% hasher = { fsa_name: user.fsa.name, lat: user.fsa.latitude, lng: user.fsa.longitude}  %>
+        <% @fsa_array << hasher %>
+        <% end %>
+    <% end %>
+    <%=tag("div", :id => 'fsa_data', :data => {:fsa => @fsa_array})%>
+
+
+    <% if current_user&.fsa %>
+      <% @user_array = [] %>
+      <% User.all.each do |user|%>
+      <% if user.fsa  && user.privacy == false%>
+        <% hasher = {} %>
+        <% hasher[:id] = user.id %>
+        <% hasher[:fsa_name] = user.fsa.name %>
+        <% hasher[:latitude] = user.fsa.latitude %>
+        <% hasher[:longitude] = user.fsa.longitude %>
+        <% @user_array << hasher %>
+        <%end %>
+      <% end %>
+    <% end %>
+
+    <%=tag("div", :id => 'user_locations', :data => {:user_location => @user_array})%>
+
+    <% if current_user&.fsa %>
+      <%=tag("div", :id => 'current_guy', :data => {:latitude => current_user.fsa.latitude, :longitude => current_user.fsa.longitude}) %>
+
+    <% end %>
+
+    <% if current_user&.fsa %>
+      <%@matches_array =[] %>
+      <%current_user.results.each do |result| %>
+        <%result.matches.each do |match| %>
+          <% User.all.each do |user| %>
+          <%if match[0].to_i == user.id && user.blocks.include?(current_user.id)==false%>
+            <% if user.fsa%>
+              <% hasher = {} %>
+              <% hasher[:id] = user.id %>
+              <% hasher[:fsa_name] = user.fsa.name %>
+              <% hasher[:latitude] = user.fsa.latitude %>
+              <% hasher[:longitude] = user.fsa.longitude %>
+              <%@matches_array << hasher %>
+              <%end %>
+            <%end %>
+          <%end %>
+        <%end %>
+      <%end %>
+    <%end %>
+
+    <%=tag("div", :id => 'current_matches', :data => {:matches_location => @matches_array})%>
+<!-- ========== Google Maps End ============== -->
+
+<% if current_user %>
+  </div>
+<% end %>
+    </main>
+
+</body>
+<div >
+<h1> </h1>
+<br>
+<h1></h1>
+<br>
+</div>
+<div class="footer">
+<%if current_user %>
+  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" id="had-enough">Had enough Hate Today?</a>
+  <%else %>
+  <p>Let's Start Hating</p>
+  <%end %>
+</div>
+</html>
